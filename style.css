@@ -22,7 +22,7 @@ html, body {
   transition: opacity 0.5s ease;
 }
 
-.visible {
+.capa visible {
   opacity: 1;
 }
 
