@@ -33,7 +33,7 @@ escena.src = `images/${clima}_${momentoDelDia}.png`;
 let actual = img1;
 let siguiente = img2;
 
-actual.src = `Weather_1.png`;
+actual.src = `images/Weather_1.png`;
 siguiente.src = `images/${clima}_${momentoDelDia}.png`;
 
 siguiente.classList.add("visible");
