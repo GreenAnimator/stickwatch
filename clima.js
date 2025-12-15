@@ -28,13 +28,13 @@ if (hora >= 7 && hora < 18) {
 const clima = "Weather"; // después esto vendrá de la API
 const escena = document.getElementById("escena");
 
-escena.src = `${clima}_${momentoDelDia}.png`;
+escena.src = `images/${clima}_${momentoDelDia}.png`;
 
 let actual = img1;
 let siguiente = img2;
 
 actual.src = `Weather_1.png`;
-siguiente.src = `${clima}_${momentoDelDia}.png`;
+siguiente.src = `images/${clima}_${momentoDelDia}.png`;
 
 siguiente.classList.add("visible");
 actual.classList.remove("visible");
