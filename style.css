@@ -49,7 +49,7 @@ html, body {
 }
 
 #reloj-hora {
-  font-size: clamp(42px, 6vw, 72px);
+  font-size: clamp(72px, 72px, 72px);
   font-weight: 500;
   letter-spacing: 1px;
 }
