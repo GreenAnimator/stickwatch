@@ -4,14 +4,6 @@ html, body {
   margin: 0;
 }
 
-#fondo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: bottom center;
-  transition: opacity 0.5s ease;
-}
-
 .capa {
   position: absolute;
   width: 100%;
@@ -30,8 +22,62 @@ html, body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background: #0b1026;
   overflow: hidden;
+}
+
+#escena img {
+  position: absolute;
+  user-select: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Capas */
+#fondo {
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+}
+
+#interior {
+  bottom: 192px;
+  left: 352px;
+  height: 192px;
+  cursor: pointer;
+}
+
+#casa {
+  bottom: 192px;
+  left: 160px;
+  height: 288px;
+}
+
+#stickman {
+  bottom: 0;
+  left: 40%;
+  height: 300px;
+}
+
+#puerta {
+  z-index: 3;
+  height: 192px;
+  bottom: 192px;
+  left: 640px;
+  cursor: pointer;
+}
+
+#tierra {
+  bottom: 0;
+  left: -224px;
+  height: 192px;
+}
+
+#pared {
+  z-index: 2;
+  left: 352px;
+  height: 192px;
+  bottom: 192px;
+  cursor: pointer;
 }
 
 #reloj-contenedor {
@@ -49,7 +95,7 @@ html, body {
 }
 
 #reloj-hora {
-  font-size: clamp(72px, 72px, 72px);
+  font-size: clamp(42px, 6vw, 72px);
   font-weight: 500;
   letter-spacing: 1px;
 }

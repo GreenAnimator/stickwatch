@@ -13,34 +13,6 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q=Buenos Aires&appid=7f95
     }
   });
 
-const hora = new Date().getHours();
-
-let momentoDelDia;
-
-if (hora >= 7 && hora < 18) {
-  momentoDelDia = "1";
-} else if (hora >= 18 && hora < 20) {
-  momentoDelDia = "2";
-} else {
-  momentoDelDia = "3";
-}
-
-const clima = "Weather"; // después esto vendrá de la API
-const escena = document.getElementById("escena");
-
-escena.src = `images/${clima}_${momentoDelDia}.png`;
-
-let actual = img1;
-let siguiente = img2;
-
-actual.src = `images/Weather_1.png`;
-siguiente.src = `images/${clima}_${momentoDelDia}.png`;
-
-siguiente.classList.add("visible");
-actual.classList.remove("visible");
-
-[actual, siguiente] = [siguiente, actual];
-
 const relojHora = document.getElementById("reloj-hora");
 const relojFecha = document.getElementById("reloj-fecha");
 
