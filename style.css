@@ -4,21 +4,8 @@ html, body {
   margin: 0;
 }
 
-.capa {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: bottom center;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.visible {
-  opacity: 1;
-}
-
 #escena {
+  align-items: center;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -28,28 +15,37 @@ html, body {
 #escena img {
   position: absolute;
   user-select: none;
-  transition: opacity 0.5s ease;
 }
 
 /* Capas */
 #fondo {
-  z-index: -2;
+  position: absolute;
+  z-index: 1;
   width: 100%;
   height: 100%;
   bottom: 0;
 }
 
 #interior {
-  bottom: 192px;
-  left: 352px;
-  height: 192px;
+  z-index: 2;
+  bottom: 128px;
+  left: 320px;
+  height: 128px;
   cursor: pointer;
 }
 
+#obj-interior {
+  z-index: 3;
+  height: 64px;
+  bottom: 128px;
+  left: 320px;
+}
+
 #casa {
-  bottom: 192px;
-  left: 160px;
-  height: 288px;
+  bottom: 128px;
+  left: 192px;
+  height: 192px;
+  z-index: 3;
 }
 
 #stickman {
@@ -59,29 +55,32 @@ html, body {
 }
 
 #puerta {
-  z-index: 3;
-  height: 192px;
-  bottom: 192px;
-  left: 640px;
+  z-index: 4;
+  height: 128px;
+  bottom: 128px;
+  left: 512px;
   cursor: pointer;
+  transition: bottom 0.6s ease-in-out, opacity 0.5s ease;
 }
 
 #tierra {
   bottom: 0;
-  left: -224px;
-  height: 192px;
+  left: -64px;
+  height: 128px;
+  z-index: 5;
 }
 
 #pared {
-  z-index: 2;
-  left: 352px;
-  height: 192px;
-  bottom: 192px;
+  z-index: 4;
+  left: 320px;
+  height: 128px;
+  bottom: 128px;
   cursor: pointer;
+  transition: bottom 0.6s ease-in-out, opacity 0.5s ease;
 }
 
 #reloj-contenedor {
-  z-index: 1;
+  z-index: 6;
   position: fixed;
   top: 40px;
   right: 60px;
@@ -114,5 +113,55 @@ html, body {
     right: 50%;
     transform: translateX(50%);
     text-align: center;
+  }
+
+  #interior {
+    z-index: 2;
+    bottom: 192px;
+    left: -128px;
+    height: 192px;
+  }
+
+  #obj-interior {
+    z-index: 3;
+    height: 96px;
+    bottom: 192px;
+    left: -128px;
+  }
+
+  #casa {
+    bottom: 192px;
+    left: -320px;
+    height: 288px;
+    z-index: 3;
+  }
+
+  #stickman {
+    bottom: 0;
+    left: 40%;
+    height: 300px;
+  }
+
+  #puerta {
+    z-index: 4;
+    height: 192px;
+    bottom: 192px;
+    left: 160px;
+    cursor: pointer;
+  }
+
+  #tierra {
+    bottom: 0;
+    left: -800px;
+    height: 192px;
+    z-index: 5;
+  }
+
+  #pared {
+    z-index: 4;
+    left: -128px;
+    height: 192px;
+    bottom: 192px;
+    cursor: pointer;
   }
 }

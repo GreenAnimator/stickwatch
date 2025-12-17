@@ -7,24 +7,32 @@ const interior = document.getElementById("interior");
 const casa = document.getElementById("casa");
 const pared = document.getElementById("pared");
 const puerta = document.getElementById("puerta");
+const obj_interior = document.getElementById("obj-interior");
 
 const hora = new Date().getHours();
 
 let momento = "dia";
 
-if (hora >= 6 && hora < 17) {
+if (hora >= 6.5 && hora < 17.5) {
   momento = "day";
-} else if (hora >= 17 && hora < 20) {
+  actualizarEscena();
+} else if ( hora >= 6 && hora < 6.5 || hora >= 17 && hora < 20) {
   momento = "afternoon";
+  actualizarEscena();
 } else {
   momento = "night";
+  actualizarEscena();
 }
 
-if (interiorVisible == true) {
-  interiorState = "on";
-} else {
-  interiorState = "off";
+function checkLuz() {
+  if (interiorVisible == true) {
+    interiorState = "on";
+  } else {
+    interiorState = "off";
+  }
 }
+
+checkLuz();
 
 function reproducirSonido(src) {
   const audio = new Audio(src);
@@ -37,19 +45,24 @@ function actualizarEscena() {
   tierra.src = `images/grass_${momento}.png`;
   casa.src   = `images/house_columns&rooftop_${momento}.png`;
   interior.src = `images/house_interior_wall_${interiorState}.png`;
-  pared.src = `images/wall_${momento}.png`;
+  pared.src = `images/house_wall_${momento}.png`;
+  puerta.src = `images/house_door_closed_${momento}.png`;
+  obj_interior.src = `images/house_interior_objs_${interiorState}.png`;
+
+  if (momento == "afternoon") {
+    interior.src = "images/house_interior_wall_on.png";
+    obj_interior.src = "images/house_interior_objs_on.png"
+  }
 }
 
 actualizarEscena();
-
-puerta.src = "images/door_closed_day.png";
 
 puerta.onclick = () => {
   puertaAbierta = !puertaAbierta;
 
   puerta.src = puertaAbierta
-    ? `images/door_open_${momento}.png`
-    : `images/door_closed_${momento}.png`;
+    ? `images/house_door_open_${momento}.png`
+    : `images/house_door_closed_${momento}.png`;
   reproducirSonido(
     puertaAbierta
       ? "sounds/door_open.ogg"
@@ -58,17 +71,12 @@ puerta.onclick = () => {
 
 };
 
-let luzEncendida = false;
-
-interior.onclick = () => {
-  luzEncendida = !luzEncendida;
-  interior.src = luzEncendida
-    ? "images/house_interior_wall_on.png"
-    : "images/house_interior_wall_off.png";
-};
-
 pared.onclick = () => {
   interiorVisible = !interiorVisible;
-  pared.style.opacity = interiorVisible ? 1 : 0.25;
-  puerta.style.opacity = interiorVisible ? 1 : 0.25;
+  pared.style.opacity = interiorVisible ? 0.25 : 1;
+  pared.style.bottom = (interiorVisible ? 256 : 128) + "px";
+  puerta.style.opacity = interiorVisible ? 0.25 : 1;
+  puerta.style.bottom = (interiorVisible ? 256 : 128) + "px";
 }
+
+actualizarEscena();
