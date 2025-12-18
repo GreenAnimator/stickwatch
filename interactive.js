@@ -61,6 +61,7 @@ function actualizarEscena() {
   lampara.src = `images/house_interior_lamp_${interiorState}.png`;
 
   if (momento == "afternoon") {
+    interiorState = !interiorState;
     interior.src = "images/house_interior_wall_on.png";
     cama.src = "images/house_interior_bed_on.png";
     lampara.src = "images/house_interior_lamp_on.png";
