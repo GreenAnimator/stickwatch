@@ -63,6 +63,10 @@ function actualizarEscena() {
   if (momento == "afternoon") {
     interior.src = "images/house_interior_wall_on.png";
     cama.src = "images/house_interior_bed_on.png";
+    lampara.src = "images/house_interior_lamp_on.png";
+    mesa.src = "images/house_interior_craftingtable_on.png";
+    horno.src = "images/house_interior_furnace_on.png";
+    caldero.src = "images/house_interior_cauldron_on.png";
   }
 }
 
