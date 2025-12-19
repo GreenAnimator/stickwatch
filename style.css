@@ -4,6 +4,11 @@ html, body {
   margin: 0;
 }
 
+/* Negro semitransparente para el highlight en Android/Chrome */
+button, a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
 #escena {
   align-items: center;
   position: relative;
