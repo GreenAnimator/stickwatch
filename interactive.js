@@ -60,19 +60,19 @@ function actualizarEscena() {
   horno.src = `images/house_interior_furnace_${interiorState}.png`;
   caldero.src = `images/house_interior_cauldron_${interiorState}.png`;
   lampara.src = `images/house_interior_lamp_${interiorState}.png`;
-
-  if (momento == "afternoon") {
-    interior.src = "images/house_interior_wall_on.png";
-    cama.src = "images/house_interior_bed_on.png";
-    mesa.src = "images/house_interior_craftingtable_on.png";
-    horno.src = "images/house_interior_furnace_on.png";
-    lampara.src = "images/house_interior_lamp_on.png";
-    caldero.src = "images/house_interior_cauldron_on.png";
-    luzEncendida = !luzEncendida;
-  }
 }
 
 actualizarEscena();
+
+if (momento == "afternoon") {
+  interior.src = "images/house_interior_wall_on.png";
+  cama.src = "images/house_interior_bed_on.png";
+  mesa.src = "images/house_interior_craftingtable_on.png";
+  horno.src = "images/house_interior_furnace_on.png";
+  caldero.src = "images/house_interior_cauldron_on.png";
+  lampara.src = "images/house_interior_lamp_on.png";
+  luzEncendida = !luzEncendida;
+}
 
 puerta.onclick = () => {
   puertaAbierta = !puertaAbierta;
@@ -90,30 +90,17 @@ puerta.onclick = () => {
 
 lampara.onclick = () => {
   luzEncendida = !luzEncendida;
-  lampara.src = luzEncendida
-   ? "images/house_interior_lamp_on.png"
-   : "images/house_interior_lamp_off.png";
-  cama.src = luzEncendida
-   ? "images/house_interior_bed_on.png"
-   : "images/house_interior_bed_off.png";
-  if (luzEncendida == false && hornoEncendido == true) {
-    horno.src = "images/house_interior_furnace_on_cook.png";
+  interiorState = luzEncendida ? "on" : "off";
+  lampara.src = `images/house_interior_lamp_${interiorState}.png`;
+  cama.src = `images/house_interior_bed_${interiorState}.png`;
+  mesa.src = `images/house_interior_craftingtable_${interiorState}.png`;
+  caldero.src = `images/house_interior_cauldron_${interiorState}.png`;
+  interior.src = `images/house_interior_wall_${interiorState}.png`;
+  if (hornoEncendido == true) {
+    horno.src = `images/house_interior_furnace_on_cook.png`;
+  } else {
+    horno.src = `images/house_interior_furnace_${interiorState}.png`;
   }
-  if (luzEncendida == false && hornoEncendido == false) {
-    horno.src = "images/house_interior_furnace_off.png";
-  }
-  if (luzEncendida == true && hornoEncendido == false) {
-    horno.src = "images/house_interior_furnace_on.png";
-  }
-  mesa.src = luzEncendida
-   ? "images/house_interior_craftingtable_on.png"
-   : "images/house_interior_craftingtable_off.png";
-  caldero.src = luzEncendida
-   ? "images/house_interior_cauldron_on.png"
-   : "images/house_interior_cauldron_off.png";
-  interior.src = luzEncendida
-   ? "images/house_interior_wall_on.png"
-   : "images/house_interior_wall_off.png";
   reproducirSonido("sounds/click_stereo.ogg")
 }
 
@@ -135,5 +122,3 @@ horno.onclick = () => {
   reproducirSonido("sounds/click_stereo.ogg")
   checkLuz();
 }
-
-actualizarEscena();
