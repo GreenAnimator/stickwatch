@@ -64,7 +64,7 @@ function actualizarEscena() {
 
 actualizarEscena();
 
-if (momento == "afternoon") {
+if (momento == "afternoon" || momento == "night") {
   interior.src = "images/house_interior_wall_on.png";
   cama.src = "images/house_interior_bed_on.png";
   mesa.src = "images/house_interior_craftingtable_on.png";
