@@ -35,11 +35,23 @@
     <div id="reloj-fecha">Lunes, 1 de enero</div>
   </div>
 
+  <div id="temp-contenedor">
+    <div id="temperatura">
+      <img id="weather-icon">
+      <div id="temp-text">0º</div>
+    </div>
+    <div id="clima">Soleado</div>
+  </div>
+
   <div class="main-container">
     <div class="capa-escenario" id="escena">
 
-      <img id="fondo">
+      <div id="fondo"></div>
       <img id="tierra">
+      <div id="clouds-group">
+        <img src="images/clouds_day.png" class="nube1">
+        <img src="images/clouds_day.png" class="nube2">
+      </div>
       <img id="casa">
       <img id="pared">
       <img id="interior">
@@ -57,7 +69,10 @@
     </div>
   </div>
 
-  <script src="clima.js"></script>
-  <script src="interactive.js"></script>
+  <script type="module" src="clima.js"></script>
+  <script type="module" src="interactive.js"></script>
+  <script type="module" src="reloj.js"></script>
+  <script type="module" src="hora.js"></script>
+  <script type="module" src="temperatura.js"></script>
 </body>
 </html>

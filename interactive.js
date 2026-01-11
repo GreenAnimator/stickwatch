@@ -1,3 +1,8 @@
+//Variables for configuration and stuff...
+import { obtenerTemperatura } from './temperatura.js';
+import { detectarMomento } from './hora.js';
+
+//Code here below
 let interiorVisible = false;
 let interiorState = "";
 let luzEncendida = false;
@@ -16,22 +21,14 @@ const lampara = document.getElementById("lampara");
 const pared = document.getElementById("pared");
 const puerta = document.getElementById("puerta");
 const oscurecer = document.getElementById("oscurecer");
+const weatherIcon = document.getElementById("weather-icon");
+const tempText = document.getElementById("temp-text");
+const nubes = document.getElementById("nubes");
 
-const hora = new Date().getHours();
+let momento = detectarMomento();
+console.log(momento);
 
-let momento = "dia";
-
-if (hora >= 6.5 && hora < 17.5) {
-  momento = "day";
-  actualizarEscena();
-} else if ( hora >= 6 && hora < 6.5 || hora >= 17 && hora < 20) {
-  momento = "afternoon";
-  actualizarEscena();
-} else {
-  momento = "night";
-  actualizarEscena();
-}
-
+//Check if the interior lamp is on
 function checkLuz() {
   if (luzEncendida == true) {
     interiorState = "on";
@@ -42,14 +39,22 @@ function checkLuz() {
 
 checkLuz();
 
+//Allows to play a sound...
 function reproducirSonido(src) {
   const audio = new Audio(src);
   audio.volume = 0.6;
   audio.play();
 }
 
+//Updating temperature...
+obtenerTemperatura().then(temp => {
+  tempText.textContent = `${temp}º`;
+});
+
+//Allows to update the scene everytime...
 function actualizarEscena() {
-  fondo.src  = `images/sky_${momento}.png`;
+/*   nubes.style.backgroundImage = `images/clouds_${momento}.png`; */
+  weatherIcon.src = "images/sun.png";
   tierra.src = `images/grass_${momento}.png`;
   casa.src   = `images/house_columns&rooftop_${momento}.png`;
   interior.src = `images/house_interior_wall_${interiorState}.png`;
@@ -64,7 +69,9 @@ function actualizarEscena() {
 
 actualizarEscena();
 
+//Boolean that help to the update if afternoon or night...
 if (momento == "afternoon" || momento == "night") {
+  fondo.style.backgroundImage = "linear-gradient(to bottom, #4F3868, #FEB47B)";
   interior.src = "images/house_interior_wall_on.png";
   cama.src = "images/house_interior_bed_on.png";
   mesa.src = "images/house_interior_craftingtable_on.png";
@@ -72,8 +79,13 @@ if (momento == "afternoon" || momento == "night") {
   caldero.src = "images/house_interior_cauldron_on.png";
   lampara.src = "images/house_interior_lamp_on.png";
   luzEncendida = !luzEncendida;
+  if (momento == "night") {
+    weatherIcon.src = "images/moon.png";
+    fondo.style.backgroundImage = "linear-gradient(to bottom, #000000, #000000)";
+  }
 }
 
+//When door is clicked
 puerta.onclick = () => {
   puertaAbierta = !puertaAbierta;
 
@@ -88,6 +100,7 @@ puerta.onclick = () => {
 
 };
 
+//When lamp is clicked...
 lampara.onclick = () => {
   luzEncendida = !luzEncendida;
   interiorState = luzEncendida ? "on" : "off";
@@ -102,8 +115,9 @@ lampara.onclick = () => {
     horno.src = `images/house_interior_furnace_${interiorState}.png`;
   }
   reproducirSonido("sounds/click_stereo.ogg")
-}
+};
 
+//When wall is clicked...
 pared.onclick = () => {
   interiorVisible = !interiorVisible;
   pared.style.opacity = interiorVisible ? 0.25 : 1;
@@ -111,8 +125,9 @@ pared.onclick = () => {
   puerta.style.opacity = interiorVisible ? 0.25 : 1;
   puerta.style.bottom = (interiorVisible ? 256 : 128) + "px";
   oscurecer.style.opacity = interiorVisible ? 0.5 : 0;
-}
+};
 
+//When furnace is clicked...
 horno.onclick = () => {
   hornoEncendido = !hornoEncendido;
     hornoCocinando = hornoEncendido ? "_cook" : "";
@@ -121,4 +136,4 @@ horno.onclick = () => {
    : `images/house_interior_furnace_${interiorState}.png`;
   reproducirSonido("sounds/click_stereo.ogg")
   checkLuz();
-}
+};
