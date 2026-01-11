@@ -23,7 +23,8 @@ const puerta = document.getElementById("puerta");
 const oscurecer = document.getElementById("oscurecer");
 const weatherIcon = document.getElementById("weather-icon");
 const tempText = document.getElementById("temp-text");
-const nubes = document.getElementById("nubes");
+const nube1 = document.getElementById("nube1");
+const nube2 = document.getElementById("nube2");
 
 let momento = detectarMomento();
 console.log(momento);
@@ -53,7 +54,8 @@ obtenerTemperatura().then(temp => {
 
 //Allows to update the scene everytime...
 function actualizarEscena() {
-/*   nubes.style.backgroundImage = `images/clouds_${momento}.png`; */
+  nube1.src = `images/clouds_${momento}.png`;
+  nube2.src = `images/clouds_${momento}.png`;
   weatherIcon.src = "images/sun.png";
   tierra.src = `images/grass_${momento}.png`;
   casa.src   = `images/house_columns&rooftop_${momento}.png`;
