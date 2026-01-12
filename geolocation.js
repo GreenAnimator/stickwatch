@@ -8,7 +8,7 @@ navigator.geolocation.getCurrentPosition(async (position) => {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
-    const response = await fetch(`http://localhost:3000/api/clima?lat=${lat}&lon=${lon}`);
+    const response = await fetch(`https://stickwatch-webservice.onrender.com/api/clima?lat=${lat}&lon=${lon}`);
     const data = await response.json();
     const temp = Math.round(data.main.temp);
     const weather = data.weather[0].main.toLowerCase();
