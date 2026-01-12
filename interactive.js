@@ -22,7 +22,6 @@ const pared = document.getElementById("pared");
 const puerta = document.getElementById("puerta");
 const oscurecer = document.getElementById("oscurecer");
 const weatherIcon = document.getElementById("weather-icon");
-const tempText = document.getElementById("temp-text");
 const nube1 = document.getElementById("nube1");
 const nube2 = document.getElementById("nube2");
 
@@ -46,11 +45,6 @@ function reproducirSonido(src) {
   audio.volume = 0.6;
   audio.play();
 }
-
-//Updating temperature...
-obtenerTemperatura().then(temp => {
-  tempText.textContent = `${temp}º`;
-});
 
 //Allows to update the scene everytime...
 function actualizarEscena() {

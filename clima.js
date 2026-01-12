@@ -7,13 +7,13 @@ fetch("https://api.openweathermap.org/data/2.5/weather?lat=-31.442&lon=-68.428&a
 
     if (clima.includes("rain")) {
       if (momento = "day") {
-        fondo.style.backgroundImage = "linear-gradient(to bottom, #677389, #576072ff)";
+        fondo.style.backgroundImage = "linear-gradient(to bottom, #555f72ff, #555f72ff)";
       }
       if (momento = "afternoon") {
-        fondo.style.backgroundImage = "linear-gradient(to bottom, #4e5666ff, #434957ff)";
+        fondo.style.backgroundImage = "linear-gradient(to bottom, #373d49ff, #373d49ff)";
       }
       if (momento = "night") {
-        fondo.style.backgroundImage = "linear-gradient(to bottom, #0c0d0fff, #0c0d0fff)";
+        fondo.style.backgroundImage = "linear-gradient(to bottom, #090a0cff, #090a0cff)";
       }
     } else if (clima.includes("cloud")) {
       if (momento == "day") {
